@@ -1,26 +1,26 @@
 const initialCards = [
     {
-      name: "Архыз",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+      name: "Chicago",
+      link: './images/places/liza-rusalskaya-IisAu2oeqMY-unsplash.jpg',
     },
     {
-      name: "Челябинская область",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+      name: "Paris",
+      link: "./images/places/barney-hindle-eFDk0mZbDdY-unsplash.jpg",
     },
     {
-      name: "Иваново",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+      name: "Tower bridge",
+      link: "./images/places/luke-stackpoole-0h3ufbLhYF0-unsplash.jpg",
     },
     {
-      name: "Камчатка",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+      name: "Sydney",
+      link: "./images/places/kewal-TkEBaFrYJ_g-unsplash.jpg",
     },
     {
-      name: "Холмогорский район",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+      name: "Cape of good hope",
+      link: "./images/places/wolfgang-hasselmann-X0k9xTq-G6c-unsplash.jpg",
     },
     {
-      name: "Байкал",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+      name: "New Zealand",
+      link: "./images/places/christian-G0WT6KLWTwY-unsplash.jpg",
     }
 ];
