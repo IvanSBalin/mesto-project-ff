@@ -1,10 +1,10 @@
-import {fullScreenImage} from "./modal";
+
 //@todo: Темплейт карточки
 const cardTemplate = document.querySelector('#card-template').content;
 
 // @todo: Функция создания карточки
-export function createCard(card, cardDelete) {
-    const cardElement = cardTemplate.cloneNode(true);
+export function createCard(card, cardDelete, cardLike, openModalWindowCard) {
+    const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     const cardTitle = cardElement.querySelector('.card__title');
     const cardImage = cardElement.querySelector('.card__image');
     const deleteButton = cardElement.querySelector('.card__delete-button');
@@ -14,21 +14,20 @@ export function createCard(card, cardDelete) {
     cardImage.src = card.link;
     cardImage.alt = card.name;
 
-    deleteButton.addEventListener('click', function (evt) {
-        cardDelete(evt.target.closest('.places__item'))
-    });
 
-    likeButton.addEventListener('click', function (evt) {
-        if (evt.target.classList.contains('card__like-button')) {
-            (likeButton.classList.toggle('card__like-button_is-active'))
-        }
-    });
+    deleteButton.addEventListener("click", () => cardDelete(cardElement));
 
-    cardImage.addEventListener('click', function () {
-        fullScreenImage(card.link, card.name)
-    });
+    likeButton.addEventListener ("click", () => cardLike(likeButton));
+
+
+    cardImage.addEventListener("click", () => {openModalWindowCard(card);})
 
     return cardElement;
+}
+
+//@todo: Like card function.
+export function cardLike(evt) {
+    evt.classList.toggle('card__like-button_is-active');
 }
 
 //@todo: Функция удаления карточки

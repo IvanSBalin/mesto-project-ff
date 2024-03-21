@@ -1,22 +1,22 @@
-const modalWindowTypeImage = document.querySelector('.popup_type_image');
-const modalWindowCaption = modalWindowTypeImage.querySelector('.popup__caption');
-const modalWindowImage = modalWindowTypeImage.querySelector('.popup__image');
-const modalWindowClose = modalWindowTypeImage.querySelector('.popup__close');
-
 // opening the modal window and adding event listener
-function openModalWindow(evt) {
-    evt.classList.add("popup_is-opened");
+function openModalWindow(item) {
+    item.classList.add("popup_is-opened");
+    const popupCloseButton = item.querySelector('.popup__close');
 
+    popupCloseButton.addEventListener("click", closeModalWindow);
     document.addEventListener("keydown", closeModalWindowByEscape);
-    evt.addEventListener("click", closeModalWindowByClickOverlay);
+    item.addEventListener("click",closeModalWindowByClickOverlay);
 }
 
 // closing the modal window and adding event listener
-function closeModalWindow(evt) {
-    evt.classList.remove("popup_is-opened");
+function closeModalWindow() {
+    const openedPopup = document.querySelector('.popup_is-opened');
+    const popupCloseButton = openedPopup.querySelector('.popup__close');
+    openedPopup.classList.remove("popup_is-opened");
 
+    popupCloseButton.removeEventListener("click", closeModalWindowByClickOverlay);
     document.removeEventListener("keydown", closeModalWindowByEscape);
-    evt.removeEventListener("click", closeModalWindowByClickOverlay);
+    openedPopup.removeEventListener("click",closeModalWindowByClickOverlay);
 }
 
 // handler for closing by escape button
@@ -31,16 +31,6 @@ function closeModalWindowByClickOverlay(evt) {
     if(evt.target.classList.contains('popup__close') || evt.target.classList.contains('popup_is-opened')) {
         closeModalWindow(evt.currentTarget);
     }
-}
-
-export function fullScreenImage(link, name) {
-    modalWindowCaption.textContent = name;
-    modalWindowImage.src = link;
-    modalWindowImage.alt = name;
-    openModalWindow(modalWindowTypeImage);
-    modalWindowClose.addEventListener('click', () => {
-        closeModalWindow(modalWindowTypeImage)
-    });
 }
 
 export {openModalWindow, closeModalWindow};
