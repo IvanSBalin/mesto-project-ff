@@ -1,22 +1,19 @@
 // opening the modal window and adding event listener
 function openModalWindow(item) {
     item.classList.add('popup_is-opened');
-    const popupCloseButton = item.querySelector('.popup__close');
 
-    popupCloseButton.addEventListener('click', closeModalWindow);
     document.addEventListener('keydown', closeModalWindowByEscape);
     item.addEventListener('click',closeModalWindowByClickOverlay);
 }
 
 // closing the modal window and adding event listener
 function closeModalWindow() {
-    const openedPopup = document.querySelector('.popup_is-opened');
-    const popupCloseButton = openedPopup.querySelector('.popup__close');
-    openedPopup.classList.remove('popup_is-opened');
+    const openWindow = document.querySelector('.popup_is-opened');
 
-    popupCloseButton.removeEventListener('click', closeModalWindowByClickOverlay);
+    openWindow.classList.remove('popup_is-opened');
+
     document.removeEventListener('keydown', closeModalWindowByEscape);
-    openedPopup.removeEventListener('click',closeModalWindowByClickOverlay);
+    openWindow.removeEventListener('click',closeModalWindowByClickOverlay);
 }
 
 // handler for closing by escape button
