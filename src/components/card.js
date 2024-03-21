@@ -1,4 +1,3 @@
-
 //@todo: Cards' template
 const cardTemplate = document.querySelector('#card-template').content;
 

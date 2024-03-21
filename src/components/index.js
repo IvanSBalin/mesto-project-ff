@@ -3,6 +3,7 @@ import '../pages/index.css';
 import {initialCards} from './cards';
 import {createCard, deleteCard, likeCard} from './card';
 import {openModalWindow, closeModalWindow} from './modal.js';
+import {getParameters} from "./card";
 
 // @todo: DOM узлы
 const placesList = document.querySelector('.places__list');
