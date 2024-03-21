@@ -3,7 +3,7 @@
 const cardTemplate = document.querySelector('#card-template').content;
 
 // @todo: Create card function
-export function createCard(card, cardDelete, cardLike, openModalWindowCard) {
+export function createCard(card, deleteCard, likeCard, openModalWindowCard) {
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     const cardTitle = cardElement.querySelector('.card__title');
     const cardImage = cardElement.querySelector('.card__image');
@@ -14,9 +14,9 @@ export function createCard(card, cardDelete, cardLike, openModalWindowCard) {
     cardImage.src = card.link;
     cardImage.alt = card.name;
 
-    deleteButton.addEventListener('click', () => cardDelete(cardElement));
+    deleteButton.addEventListener('click', () => deleteCard(cardElement));
 
-    likeButton.addEventListener ('click', () => cardLike(likeButton));
+    likeButton.addEventListener ('click', () => likeCard(likeButton));
 
     cardImage.addEventListener('click', () => {openModalWindowCard(card);})
 
@@ -24,11 +24,11 @@ export function createCard(card, cardDelete, cardLike, openModalWindowCard) {
 }
 
 //@todo: Like card function.
-export function cardLike(evt) {
+export function likeCard(evt) {
     evt.classList.toggle('card__like-button_is-active');
 }
 
 //@todo: Delete card function
-export function cardDelete(item) {
+export function deleteCard(item) {
    item.remove();
 }

@@ -1,7 +1,7 @@
 // index.js
 import '../pages/index.css';
 import {initialCards} from './cards';
-import {createCard, cardDelete, cardLike} from './card';
+import {createCard, deleteCard, likeCard} from './card';
 import {openModalWindow, closeModalWindow} from './modal.js';
 
 // @todo: DOM узлы
@@ -13,8 +13,8 @@ const modalWindowProfileEdit = document.querySelector('.popup_type_edit');
 const modalWindowTypeAdd = document.querySelector('.popup_type_new-card');
 const modalWindowTypeImage = document.querySelector('.popup_type_image');
 
-const profileFormElement = modalWindowProfileEdit.querySelector('.popup__form');
-const cardFormElement = modalWindowTypeAdd.querySelector('.popup__form');
+const profileFormElement = document.forms['edit-profile'];
+const cardFormElement = document.forms['new-place'];
 
 const nameInput = profileFormElement.querySelector('.popup__input_type_name');
 const jobInput = profileFormElement.querySelector('.popup__input_type_description');
@@ -27,30 +27,35 @@ const linkCardInput =document.querySelector('.popup__input_type_url');
 const imageCard = document.querySelector('.popup__image');
 const imageCaption = document.querySelector('.popup__caption');
 
-function handleFormSubmit(evt) {
+const isAnimated = document.querySelectorAll('.popup');
+isAnimated.forEach(function(item) {
+   item.classList.add('popup_is-animated');
+});
+
+function handleProfileFormSubmit(evt) {
    evt.preventDefault();
    currentName.textContent = nameInput.value;
    currentJob.textContent = jobInput.value;
 
    closeModalWindow(modalWindowProfileEdit);
 }
-function handleFormCard (evt){
+function handleFormCardSubmit (evt){
    evt.preventDefault();
    const cardData = {
       name: placeCardInput.value,
       link: linkCardInput.value,
    };
-   placesList.prepend(createCard(cardData, cardDelete, cardLike, openModalWindowCard));
+   placesList.prepend(createCard(cardData, deleteCard, likeCard, openModalWindowCard));
    closeModalWindow(modalWindowTypeAdd);
    cardFormElement.reset();
 }
 
-function openModalWindowCard(evt) {
+function openModalWindowCard(card) {
 
    openModalWindow(modalWindowTypeImage);
-   imageCard.src=evt.link;
-   imageCard.alt=evt.name;
-   imageCaption.textContent=evt.name;
+   imageCard.src = card.link;
+   imageCard.alt = card.name;
+   imageCaption.textContent = card.name;
 }
 
 function openModalWindowProfileEdit (item) {
@@ -62,7 +67,7 @@ function openModalWindowProfileEdit (item) {
 
 // @todo: Вывести карточки на страницу
 initialCards.forEach(function(item)  {
-   const placesCards = createCard(item, cardDelete, cardLike, openModalWindowCard);
+   const placesCards = createCard(item, deleteCard, likeCard, openModalWindowCard);
    placesList.append(placesCards);
 });
 
@@ -74,5 +79,5 @@ profileAddButton.addEventListener('click', () => {
 });
 
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
-profileFormElement.addEventListener('submit', handleFormSubmit);
-cardFormElement.addEventListener('submit', handleFormCard);
+profileFormElement.addEventListener('submit', handleProfileFormSubmit);
+cardFormElement.addEventListener('submit', handleFormCardSubmit);

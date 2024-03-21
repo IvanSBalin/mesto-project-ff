@@ -7,19 +7,17 @@ function openModalWindow(item) {
 }
 
 // closing the modal window and adding event listener
-function closeModalWindow() {
-    const openWindow = document.querySelector('.popup_is-opened');
-
-    openWindow.classList.remove('popup_is-opened');
+function closeModalWindow(item) {
+    item.classList.remove('popup_is-opened');
 
     document.removeEventListener('keydown', closeModalWindowByEscape);
-    openWindow.removeEventListener('click',closeModalWindowByClickOverlay);
+    item.removeEventListener('click',closeModalWindowByClickOverlay);
 }
 
 // handler for closing by escape button
 function closeModalWindowByEscape(evt) {
     if(evt.key === 'Escape') {
-        closeModalWindow(document.querySelector('.popup_is-opened'));
+        closeModalWindow();
     }
 }
 
