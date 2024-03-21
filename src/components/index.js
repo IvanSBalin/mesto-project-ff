@@ -1,8 +1,8 @@
 // index.js
 import '../pages/index.css';
-import {initialCards} from "./cards";
-import {createCard, cardDelete, cardLike} from "./card";
-import {openModalWindow, closeModalWindow} from "./modal.js";
+import {initialCards} from './cards';
+import {createCard, cardDelete, cardLike} from './card';
+import {openModalWindow, closeModalWindow} from './modal.js';
 
 // @todo: DOM узлы
 const placesList = document.querySelector('.places__list');
@@ -54,6 +54,7 @@ function openModalWindowCard(evt) {
 }
 
 function openModalWindowProfileEdit (item) {
+
    nameInput.value = currentName.textContent;
    jobInput.value = currentJob.textContent;
    openModalWindow(item);
@@ -65,15 +66,13 @@ initialCards.forEach(function(item)  {
    placesList.append(placesCards);
 });
 
-profileEditButton.addEventListener("click", () => {
+profileEditButton.addEventListener('click', () => {
    openModalWindowProfileEdit(modalWindowProfileEdit);
 });
-profileAddButton.addEventListener("click", () => {
+profileAddButton.addEventListener('click', () => {
    openModalWindow(modalWindowTypeAdd);
 });
 
-
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
+// Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
 profileFormElement.addEventListener('submit', handleFormSubmit);
 cardFormElement.addEventListener('submit', handleFormCard);

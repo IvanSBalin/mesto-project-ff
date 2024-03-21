@@ -1,8 +1,8 @@
 
-//@todo: Темплейт карточки
+//@todo: Cards' template
 const cardTemplate = document.querySelector('#card-template').content;
 
-// @todo: Функция создания карточки
+// @todo: Create card function
 export function createCard(card, cardDelete, cardLike, openModalWindowCard) {
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     const cardTitle = cardElement.querySelector('.card__title');
@@ -14,13 +14,11 @@ export function createCard(card, cardDelete, cardLike, openModalWindowCard) {
     cardImage.src = card.link;
     cardImage.alt = card.name;
 
+    deleteButton.addEventListener('click', () => cardDelete(cardElement));
 
-    deleteButton.addEventListener("click", () => cardDelete(cardElement));
+    likeButton.addEventListener ('click', () => cardLike(likeButton));
 
-    likeButton.addEventListener ("click", () => cardLike(likeButton));
-
-
-    cardImage.addEventListener("click", () => {openModalWindowCard(card);})
+    cardImage.addEventListener('click', () => {openModalWindowCard(card);})
 
     return cardElement;
 }
@@ -30,7 +28,7 @@ export function cardLike(evt) {
     evt.classList.toggle('card__like-button_is-active');
 }
 
-//@todo: Функция удаления карточки
+//@todo: Delete card function
 export function cardDelete(item) {
    item.remove();
 }
