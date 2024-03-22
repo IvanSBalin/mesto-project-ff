@@ -28,8 +28,8 @@ const linkCardInput =document.querySelector('.popup__input_type_url');
 const imageCard = document.querySelector('.popup__image');
 const imageCaption = document.querySelector('.popup__caption');
 
-const isAnimated = document.querySelectorAll('.popup');
-isAnimated.forEach(function(item) {
+const popups = document.querySelectorAll('.popup');
+popups.forEach(function(item) {
    item.classList.add('popup_is-animated');
 });
 

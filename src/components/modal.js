@@ -17,7 +17,7 @@ function closeModalWindow(item) {
 // handler for closing by escape button
 function closeModalWindowByEscape(evt) {
     if(evt.key === 'Escape') {
-        closeModalWindow();
+        closeModalWindow(document.querySelector('.popup_is-opened'));
     }
 }
 
